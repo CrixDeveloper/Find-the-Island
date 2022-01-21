@@ -9,6 +9,7 @@ public class SpiderEnemy_Controller : MonoBehaviour
 
     // Private Variables: 
     protected AudioSource spiderAS;
+    private bool audioPlaying;
 
     [Header("References:")]
     public NavMeshAgent spiderAgent;
@@ -23,6 +24,7 @@ public class SpiderEnemy_Controller : MonoBehaviour
     void Start()
     {
         spiderAS = GetComponent<AudioSource>();
+        audioPlaying = false;
     }
 
     // Update is called once per frame
@@ -45,9 +47,10 @@ public class SpiderEnemy_Controller : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && audioPlaying == false)
         {
             spiderAS.PlayOneShot(playerHurt);
+            audioPlaying = true;
         }
     }
 
