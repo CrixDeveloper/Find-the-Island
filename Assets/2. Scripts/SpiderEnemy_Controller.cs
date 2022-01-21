@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +7,6 @@ public class SpiderEnemy_Controller : MonoBehaviour
 
     // Private Variables: 
     protected AudioSource spiderAS;
-    private bool audioPlaying;
 
     [Header("References:")]
     public NavMeshAgent spiderAgent;
@@ -24,7 +21,6 @@ public class SpiderEnemy_Controller : MonoBehaviour
     void Start()
     {
         spiderAS = GetComponent<AudioSource>();
-        audioPlaying = false;
     }
 
     // Update is called once per frame
@@ -45,12 +41,11 @@ public class SpiderEnemy_Controller : MonoBehaviour
         spiderAgent.destination = playerTarget.transform.position;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") && audioPlaying == false)
+        if (other.tag == "Player")
         {
             spiderAS.PlayOneShot(playerHurt);
-            audioPlaying = true;
         }
     }
 
