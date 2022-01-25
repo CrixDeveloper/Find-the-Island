@@ -46,6 +46,7 @@ public class SpiderEnemy_Controller : MonoBehaviour
         if (other.tag == "Player")
         {
             spiderAS.PlayOneShot(playerHurt);
+            Player_Controller.playerHealth -= 50;
         }
     }
 

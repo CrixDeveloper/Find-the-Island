@@ -90,8 +90,8 @@ public class WaveSpawner : MonoBehaviour
 
 		if (nextWave + 1 > waves.Length - 1)
 		{
-			nextWave = 0;
-			Debug.Log("ALL WAVES COMPLETE! Looping...");
+			//nextWave = 0;
+			//Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
 		{
@@ -105,7 +105,7 @@ public class WaveSpawner : MonoBehaviour
 		if (searchCountdown <= 0f)
 		{
 			searchCountdown = 1f;
-			if (GameObject.FindGameObjectWithTag("Enemy") == null)
+			if (GameObject.FindGameObjectWithTag("Key") == null)
 			{
 				return false;
 			}
