@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Player_Controller : MonoBehaviour
@@ -45,7 +44,7 @@ public class Player_Controller : MonoBehaviour
 
         if (playerHealth == 0)
         {
-            Invoke("RestartGame", 5f);
+            Invoke("RestartGame", 3f);
         }
     }
 
@@ -54,14 +53,17 @@ public class Player_Controller : MonoBehaviour
         if (other.tag == "Key")
         {
             Interlude.InterludeManager.KeyFound();
-            enemyAgent.GetComponent<NavMeshAgent>().speed = 0;
+            enemyAgent = GetComponent<NavMeshAgent>();
+            enemyAgent.speed = 0;
         }
     }
 
     private void RestartGame()
     {
         playerHealth = 100;
-        SceneManager.LoadScene("InterludeMenu");
+        SceneManager.LoadScene("MainMenu");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     #endregion
 }
